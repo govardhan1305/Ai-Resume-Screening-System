@@ -4,10 +4,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Resume Screening | Admin Login</title>
+
+<title>TalentScreen AI | Admin Login</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
@@ -23,36 +25,38 @@ body {
     background: #080b16;
     color: #fff;
     display: flex;
-    align-items: center;
     justify-content: center;
-    overflow-x: hidden;
+    align-items: center;
     padding: 25px;
+    overflow-x: hidden;
 }
 
-body::before {
-    content: "";
-    position: fixed;
-    width: 500px;
-    height: 500px;
-    background: #7138ff;
-    filter: blur(180px);
-    opacity: 0.19;
-    top: -180px;
-    left: -150px;
-    z-index: -1;
-}
-
+body::before,
 body::after {
     content: "";
     position: fixed;
+    border-radius: 50%;
+    filter: blur(160px);
+    z-index: -1;
+    pointer-events: none;
+}
+
+body::before {
+    width: 450px;
+    height: 450px;
+    background: #7138ff;
+    opacity: .2;
+    top: -150px;
+    left: -130px;
+}
+
+body::after {
     width: 450px;
     height: 450px;
     background: #087cf9;
-    filter: blur(180px);
-    opacity: 0.16;
-    bottom: -180px;
+    opacity: .17;
+    bottom: -160px;
     right: -100px;
-    z-index: -1;
 }
 
 .container {
@@ -60,21 +64,22 @@ body::after {
     max-width: 1050px;
     min-height: 620px;
     display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    background: rgba(17, 22, 40, 0.88);
-    border: 1px solid rgba(255,255,255,0.09);
+    grid-template-columns: 1.1fr .9fr;
+    background: rgba(17,22,40,.94);
+    border: 1px solid rgba(255,255,255,.09);
     border-radius: 24px;
     overflow: hidden;
-    box-shadow: 0 25px 100px rgba(0,0,0,0.45);
+    box-shadow: 0 25px 100px rgba(0,0,0,.45);
 }
 
+/* LEFT PANEL */
+
 .left-panel {
-    padding: 65px 55px;
+    padding: 60px 55px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background: linear-gradient(145deg, #151c36, #101326 75%);
-    position: relative;
+    background: linear-gradient(145deg,#151c36,#101326);
 }
 
 .brand {
@@ -86,13 +91,13 @@ body::after {
 .logo {
     width: 48px;
     height: 48px;
-    border-radius: 14px;
     display: grid;
     place-items: center;
-    background: linear-gradient(135deg, #8b5cf6, #3679f6);
-    font-size: 24px;
+    border-radius: 14px;
+    background: linear-gradient(135deg,#8b5cf6,#3679f6);
+    font-size: 21px;
     font-weight: 800;
-    box-shadow: 0 5px 25px rgba(124,85,255,0.35);
+    box-shadow: 0 5px 25px rgba(124,85,255,.35);
 }
 
 .brand h2 {
@@ -101,9 +106,10 @@ body::after {
 }
 
 .brand p {
-    font-size: 11px;
+    font-size: 10px;
     color: #929bb5;
-    margin-top: 4px;
+    margin-top: 5px;
+    letter-spacing: 1px;
 }
 
 .hero {
@@ -112,24 +118,24 @@ body::after {
 
 .tag {
     display: inline-block;
-    color: #bda7ff;
-    background: rgba(139,92,246,0.12);
-    border: 1px solid rgba(139,92,246,0.25);
     padding: 9px 14px;
     border-radius: 30px;
+    color: #bda7ff;
+    background: rgba(139,92,246,.12);
+    border: 1px solid rgba(139,92,246,.25);
     font-size: 11px;
     margin-bottom: 25px;
 }
 
 .hero h1 {
-    font-size: clamp(34px, 4vw, 48px);
+    font-size: clamp(34px,4vw,48px);
     line-height: 1.2;
     font-weight: 800;
     letter-spacing: -1.8px;
 }
 
 .hero h1 span {
-    background: linear-gradient(90deg, #a78bfa, #60a5fa);
+    background: linear-gradient(90deg,#a78bfa,#60a5fa);
     -webkit-background-clip: text;
     color: transparent;
 }
@@ -164,8 +170,10 @@ body::after {
     font-size: 11px;
 }
 
+/* RIGHT PANEL */
+
 .right-panel {
-    padding: 65px 48px;
+    padding: 60px 48px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -176,94 +184,49 @@ body::after {
 }
 
 .login-header h2 {
-    font-size: 28px;
+    font-size: 29px;
     font-weight: 700;
 }
 
 .login-header p {
     color: #8791aa;
     font-size: 13px;
-    margin-top: 10px;
-    line-height: 1.6;
-}
-
-label {
-    display: block;
-    color: #cbd1df;
-    font-size: 12px;
-    font-weight: 600;
-    margin-bottom: 10px;
+    margin-top: 12px;
+    line-height: 1.7;
 }
 
 .input-group {
     margin-bottom: 23px;
 }
 
-.input-box {
-    position: relative;
+label {
+    display: block;
+    color: #cbd1df;
+    font-size: 11px;
+    font-weight: 700;
+    margin-bottom: 11px;
+    letter-spacing: .7px;
 }
 
 input {
     width: 100%;
-    padding: 16px;
+    padding: 17px;
     border-radius: 11px;
     background: #0c1121;
     border: 1px solid #252d44;
     color: white;
     font-size: 13px;
     outline: none;
-    transition: 0.3s;
+    transition: .3s;
 }
 
 input:focus {
     border-color: #8b5cf6;
-    box-shadow: 0 0 0 3px rgba(139,92,246,0.12);
+    box-shadow: 0 0 0 3px rgba(139,92,246,.12);
 }
 
 input::placeholder {
     color: #626d85;
-}
-
-.toggle-password {
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    color: #929bb5;
-    cursor: pointer;
-    font-size: 11px;
-}
-
-.options {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 3px 0 27px;
-    font-size: 11px;
-}
-
-.remember {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    color: #a8b0c4;
-}
-
-.remember input {
-    width: 14px;
-    height: 14px;
-    accent-color: #8b5cf6;
-}
-
-a {
-    color: #a78bfa;
-    text-decoration: none;
-}
-
-a:hover {
-    color: #c4b5fd;
 }
 
 .login-btn {
@@ -271,30 +234,31 @@ a:hover {
     padding: 16px;
     border: none;
     border-radius: 11px;
-    background: linear-gradient(100deg, #8655ef, #4f83ed);
+    background: linear-gradient(100deg,#8655ef,#4f83ed);
     color: white;
     font-size: 13px;
     font-weight: 700;
     cursor: pointer;
-    transition: 0.3s;
+    transition: .3s;
 }
 
-.login-btn:hover {
+.login-btn:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(113,85,239,0.3);
+    box-shadow: 0 8px 25px rgba(113,85,239,.3);
 }
 
 .login-btn:disabled {
-    opacity: 0.6;
-    cursor: wait;
-    transform: none;
+    opacity: .65;
+    cursor: not-allowed;
 }
 
 .message {
     font-size: 12px;
-    margin-top: 15px;
+    margin-top: 18px;
     text-align: center;
-    min-height: 18px;
+    line-height: 1.7;
+    min-height: 25px;
+    overflow-wrap: anywhere;
 }
 
 .security {
@@ -304,13 +268,16 @@ a:hover {
     text-align: center;
     color: #68738c;
     font-size: 10px;
+    line-height: 1.8;
 }
 
 .security span {
     color: #8b5cf6;
 }
 
-@media(max-width: 750px) {
+/* MOBILE */
+
+@media(max-width:750px) {
     .container {
         grid-template-columns: 1fr;
         max-width: 460px;
@@ -328,7 +295,8 @@ a:hover {
         font-size: 35px;
     }
 
-    .features, .footer {
+    .features,
+    .footer {
         display: none;
     }
 
@@ -337,12 +305,13 @@ a:hover {
     }
 }
 
-@media(max-width: 380px) {
+@media(max-width:380px) {
     body {
         padding: 10px;
     }
 
-    .left-panel, .right-panel {
+    .left-panel,
+    .right-panel {
         padding: 28px 20px;
     }
 }
@@ -353,18 +322,26 @@ a:hover {
 
 <div class="container">
 
-    <div class="left-panel">
+    <!-- LEFT BRANDING PANEL -->
+
+    <section class="left-panel">
 
         <div class="brand">
+
             <div class="logo">AI</div>
+
             <div>
                 <h2>TalentScreen AI</h2>
                 <p>INTELLIGENT RECRUITMENT PLATFORM</p>
             </div>
+
         </div>
 
         <div class="hero">
-            <div class="tag">✦ AI POWERED RECRUITMENT</div>
+
+            <div class="tag">
+                ✦ AI POWERED RECRUITMENT
+            </div>
 
             <h1>
                 Hire smarter.<br>
@@ -378,114 +355,101 @@ a:hover {
             </p>
 
             <div class="features">
-                <div class="feature"><span>✦</span> AI Screening</div>
-                <div class="feature"><span>✦</span> Smart Matching</div>
-                <div class="feature"><span>✦</span> Faster Hiring</div>
+
+                <div class="feature">
+                    <span>✦</span> AI Screening
+                </div>
+
+                <div class="feature">
+                    <span>✦</span> Smart Matching
+                </div>
+
+                <div class="feature">
+                    <span>✦</span> Faster Hiring
+                </div>
+
             </div>
+
         </div>
 
         <div class="footer">
             © 2026 TalentScreen AI. All rights reserved.
         </div>
 
-    </div>
+    </section>
 
-    <div class="right-panel">
+
+    <!-- LOGIN PANEL -->
+
+    <section class="right-panel">
 
         <div class="login-header">
+
             <h2>Welcome back</h2>
-            <p>Sign in to access your recruitment dashboard.</p>
+
+            <p>
+                Enter your administrator email address.
+                We'll send you a secure sign-in link.
+            </p>
+
         </div>
 
         <form id="loginForm">
 
             <div class="input-group">
-                <label for="email">ADMIN EMAIL</label>
+
+                <label for="email">
+                    ADMIN EMAIL ADDRESS
+                </label>
+
                 <input
                     type="email"
                     id="email"
                     placeholder="Enter your admin email"
-                    autocomplete="username"
+                    autocomplete="email"
                     required
                 >
+
             </div>
 
-            <div class="input-group">
-                <label for="password">PASSWORD</label>
-
-                <div class="input-box">
-                    <input
-                        type="password"
-                        id="password"
-                        placeholder="Enter your password"
-                        autocomplete="current-password"
-                        required
-                        minlength="6"
-                    >
-
-                    <button
-                        type="button"
-                        class="toggle-password"
-                        id="togglePassword"
-                    >SHOW</button>
-                </div>
-            </div>
-
-            <div class="options">
-                <label class="remember">
-                    <input type="checkbox" id="remember">
-                    Remember me
-                </label>
-
-                <a href="#" id="forgotPassword">Forgot password?</a>
-            </div>
-
-            <button type="submit" class="login-btn" id="loginBtn">
-                Sign In to Dashboard →
+            <button
+                type="submit"
+                class="login-btn"
+                id="loginBtn"
+            >
+                Send Login Link →
             </button>
 
-            <div class="message" id="message"></div>
+            <div
+                class="message"
+                id="message"
+                role="status"
+                aria-live="polite"
+            ></div>
 
         </form>
 
         <div class="security">
-            <span>✦</span> Secure Admin Access
+
+            <span>✦</span> Passwordless Secure Admin Access
+
+            <br>
+
+            Your login link will be sent to your registered email.
+
             <br><br>
+
             Powered by Firebase Authentication
+
         </div>
 
-    </div>
+    </section>
 
 </div>
 
-<script>
-const password = document.getElementById("password");
-const toggle = document.getElementById("togglePassword");
+<!-- FIREBASE AUTHENTICATION -->
 
-toggle.addEventListener("click", () => {
-    const visible = password.type === "password";
-    password.type = visible ? "text" : "password";
-    toggle.textContent = visible ? "HIDE" : "SHOW";
-});
-
-document.getElementById("loginForm").addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    document.getElementById("message").textContent =
-        "Firebase authentication will be connected in the next step.";
-
-    document.getElementById("message").style.color = "#a78bfa";
-});
-
-document.getElementById("forgotPassword").addEventListener("click", (e) => {
-    e.preventDefault();
-
-    document.getElementById("message").textContent =
-        "Password reset will be available after Firebase integration.";
-
-    document.getElementById("message").style.color = "#a78bfa";
-});
-</script>
+<script type="module" src="js/auth.js"></script>
 
 </body>
 </html>

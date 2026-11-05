@@ -1,0 +1,589 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TalentScreen AI | Applicant Details</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #090d1a;
+    color: #fff;
+    min-height: 100vh;
+}
+
+.sidebar {
+    position: fixed;
+    width: 245px;
+    height: 100vh;
+    background: #10162a;
+    border-right: 1px solid #222b45;
+    padding: 28px 18px;
+}
+
+.logo {
+    font-size: 21px;
+    font-weight: bold;
+    color: #a78bfa;
+    margin-bottom: 45px;
+}
+
+.menu-title {
+    color: #77809c;
+    font-size: 11px;
+    margin: 25px 12px 12px;
+    letter-spacing: 1px;
+}
+
+.nav a {
+    display: block;
+    padding: 14px 13px;
+    margin-bottom: 7px;
+    color: #aeb7d0;
+    text-decoration: none;
+    border-radius: 9px;
+    font-size: 14px;
+}
+
+.nav a:hover,
+.nav a.active {
+    background: #29234b;
+    color: #c4b5fd;
+}
+
+.main {
+    margin-left: 245px;
+    padding: 35px;
+    max-width: 1250px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 28px;
+}
+
+.header h1 {
+    font-size: 27px;
+    margin-bottom: 8px;
+}
+
+.header p {
+    color: #8993ad;
+    font-size: 13px;
+}
+
+.back-link {
+    color: #c4b5fd;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.card {
+    background: #121a30;
+    border: 1px solid #26304c;
+    border-radius: 14px;
+    padding: 25px;
+    margin-bottom: 22px;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.avatar {
+    width: 65px;
+    height: 65px;
+    border-radius: 15px;
+    background: #302653;
+    display: grid;
+    place-items: center;
+    color: #c4b5fd;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.profile h2 {
+    font-size: 21px;
+    margin-bottom: 8px;
+}
+
+.profile p {
+    color: #8993ad;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.section-title {
+    color: #c4b5fd;
+    font-size: 17px;
+    margin-bottom: 20px;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+}
+
+.detail-label {
+    color: #8993ad;
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+
+.detail-value {
+    color: #e1e5f2;
+    font-size: 14px;
+    overflow-wrap: anywhere;
+}
+
+.score-layout {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+
+.score-circle {
+    width: 125px;
+    height: 125px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    border: 7px solid #35304f;
+    display: grid;
+    place-items: center;
+    text-align: center;
+}
+
+.score-circle strong {
+    display: block;
+    font-size: 29px;
+    color: #c4b5fd;
+}
+
+.score-circle span {
+    font-size: 10px;
+    color: #8993ad;
+}
+
+.score-info h3 {
+    font-size: 17px;
+    margin-bottom: 10px;
+}
+
+.score-info p {
+    color: #8993ad;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.skill-box {
+    background: #0b1224;
+    border: 1px solid #303b5b;
+    border-radius: 10px;
+    padding: 18px;
+}
+
+.skill-box h3 {
+    font-size: 14px;
+    margin-bottom: 13px;
+}
+
+.skill-box p {
+    color: #8993ad;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.skill-box.matched h3 {
+    color: #4ade80;
+}
+
+.skill-box.missing h3 {
+    color: #fbbf24;
+}
+
+.analysis-text {
+    color: #aeb7d0;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.status {
+    display: inline-block;
+    padding: 7px 12px;
+    border-radius: 20px;
+    background: #302653;
+    color: #c4b5fd;
+    font-size: 12px;
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 12px 18px;
+    border-radius: 8px;
+    border: none;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: #8b5cf6;
+    color: white;
+}
+
+.btn-secondary {
+    background: #252e49;
+    color: #d5d9e8;
+    border: 1px solid #3a4665;
+}
+
+.btn:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+}
+
+.empty {
+    color: #8993ad;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.notice {
+    background: #211d36;
+    border: 1px solid #494071;
+    color: #c4b5fd;
+    border-radius: 9px;
+    padding: 14px;
+    font-size: 12px;
+    line-height: 1.6;
+    margin-top: 18px;
+}
+
+@media(max-width: 750px) {
+    .sidebar {
+        width: 190px;
+    }
+
+    .main {
+        margin-left: 190px;
+        padding: 20px;
+    }
+
+    .score-layout {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media(max-width: 480px) {
+    .sidebar {
+        width: 65px;
+        padding: 15px 7px;
+    }
+
+    .logo {
+        font-size: 10px;
+        overflow-wrap: anywhere;
+    }
+
+    .menu-title {
+        display: none;
+    }
+
+    .nav a {
+        font-size: 0;
+        text-align: center;
+        padding: 14px 3px;
+    }
+
+    .main {
+        margin-left: 65px;
+        padding: 15px;
+    }
+
+    .details-grid,
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        padding: 18px;
+    }
+
+    .header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<aside class="sidebar">
+    <div class="logo">TalentScreen AI</div>
+
+    <div class="menu-title">MAIN MENU</div>
+
+    <nav class="nav">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="create-job.html">Create Job</a>
+        <a href="applicants.html" class="active">Applicants</a>
+    </nav>
+
+    <div class="menu-title">ACCOUNT</div>
+
+    <nav class="nav">
+        <a href="index.html">Login Page</a>
+    </nav>
+</aside>
+
+<main class="main">
+
+    <header class="header">
+        <div>
+            <h1>Applicant Details</h1>
+            <p>Review candidate information and AI resume analysis.</p>
+        </div>
+
+        <a href="applicants.html" class="back-link">
+            ← Back to Applicants
+        </a>
+    </header>
+
+    <section class="card">
+        <div class="profile">
+            <div class="avatar">C</div>
+
+            <div>
+                <h2 id="candidateName">Candidate Name</h2>
+                <p id="candidateEmail">Candidate email will appear here</p>
+                <p id="applicationStatus">
+                    <span class="status">Awaiting application data</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="card">
+        <h2 class="section-title">Personal Information</h2>
+
+        <div class="details-grid">
+
+            <div>
+                <p class="detail-label">Full Name</p>
+                <p class="detail-value" id="fullName">Not available</p>
+            </div>
+
+            <div>
+                <p class="detail-label">Email Address</p>
+                <p class="detail-value" id="email">Not available</p>
+            </div>
+
+            <div>
+                <p class="detail-label">Phone Number</p>
+                <p class="detail-value" id="phone">Not available</p>
+            </div>
+
+            <div>
+                <p class="detail-label">Qualification</p>
+                <p class="detail-value" id="qualification">Not available</p>
+            </div>
+
+            <div>
+                <p class="detail-label">Experience</p>
+                <p class="detail-value" id="experience">Not available</p>
+            </div>
+
+            <div>
+                <p class="detail-label">Applied Job</p>
+                <p class="detail-value" id="appliedJob">Not available</p>
+            </div>
+
+            <div>
+                <p class="detail-label">Skills</p>
+                <p class="detail-value" id="candidateSkills">Not available</p>
+            </div>
+
+            <div>
+                <p class="detail-label">Portfolio / LinkedIn</p>
+                <p class="detail-value" id="portfolio">Not available</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="card">
+        <h2 class="section-title">AI Resume Match Analysis</h2>
+
+        <div class="score-layout">
+
+            <div class="score-circle">
+                <div>
+                    <strong id="matchScore">--</strong>
+                    <span>Match Score</span>
+                </div>
+            </div>
+
+            <div class="score-info">
+                <h3 id="matchHeading">Analysis Pending</h3>
+                <p id="matchExplanation">
+                    The AI screening result will appear here after
+                    the resume has been processed.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="notice">
+            The AI score is an assessment aid, not a final hiring decision.
+            The recruiter should review the resume and make the final decision.
+        </div>
+    </section>
+
+    <section class="card">
+        <h2 class="section-title">Skills Comparison</h2>
+
+        <div class="skills-grid">
+
+            <div class="skill-box matched">
+                <h3>Matched Skills</h3>
+                <p id="matchedSkills">
+                    AI matched skills will appear here after analysis.
+                </p>
+            </div>
+
+            <div class="skill-box missing">
+                <h3>Missing Skills</h3>
+                <p id="missingSkills">
+                    Skills requiring further review will appear here.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="card">
+        <h2 class="section-title">Resume Information</h2>
+
+        <p class="empty" id="resumeName">
+            No resume information available yet.
+        </p>
+
+        <div class="actions">
+            <a
+                href="#"
+                id="resumeLink"
+                class="btn btn-secondary"
+                hidden
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                View Resume
+            </a>
+        </div>
+    </section>
+
+    <section class="card">
+        <h2 class="section-title">Recruitment Decision</h2>
+
+        <p class="detail-label">Application Status</p>
+        <p class="detail-value" id="decisionStatus">
+            Awaiting AI analysis
+        </p>
+
+        <div class="actions">
+            <button class="btn btn-primary" id="interviewBtn" disabled>
+                Send Interview Email
+            </button>
+
+            <button class="btn btn-secondary" id="backBtn">
+                Back to Applicants
+            </button>
+        </div>
+
+        <p class="empty" id="actionMessage" style="margin-top:15px">
+            Interview invitation becomes available after a verified
+            AI match score of 75% or above.
+        </p>
+    </section>
+
+</main>
+
+<script type="module">
+import { auth } from "./js/firebase-config.js";
+
+import {
+    onAuthStateChanged,
+    getIdTokenResult
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+
+const params = new URLSearchParams(window.location.search);
+const applicantId = params.get("id");
+
+const interviewBtn = document.getElementById("interviewBtn");
+
+onAuthStateChanged(auth, async (user) => {
+    if (!user) {
+        window.location.replace("index.html");
+        return;
+    }
+
+    try {
+        const token = await getIdTokenResult(user, true);
+
+        if (token.claims.admin !== true) {
+            window.location.replace("index.html");
+            return;
+        }
+
+        if (!applicantId) {
+            document.getElementById("actionMessage").textContent =
+                "Applicant ID is missing. Open this page from the Applicants list.";
+        }
+
+    } catch (error) {
+        console.error("Admin verification error:", error);
+        window.location.replace("index.html");
+    }
+});
+
+document.getElementById("backBtn").addEventListener("click", () => {
+    window.location.href = "applicants.html";
+});
+
+interviewBtn.addEventListener("click", () => {
+    document.getElementById("actionMessage").textContent =
+        "Interview email functionality will be connected after applicant data integration.";
+});
+</script>
+
+</body>
+</html>

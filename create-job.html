@@ -1,0 +1,469 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TalentScreen AI | Create Job</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #090d1a;
+    color: white;
+    min-height: 100vh;
+}
+
+.sidebar {
+    position: fixed;
+    width: 245px;
+    height: 100vh;
+    background: #10162a;
+    border-right: 1px solid #222b45;
+    padding: 28px 18px;
+}
+
+.logo {
+    font-size: 21px;
+    font-weight: bold;
+    color: #a78bfa;
+    margin-bottom: 45px;
+}
+
+.menu-title {
+    color: #77809c;
+    font-size: 11px;
+    margin: 25px 12px 12px;
+    letter-spacing: 1px;
+}
+
+.nav a {
+    display: block;
+    padding: 14px 13px;
+    margin-bottom: 7px;
+    color: #aeb7d0;
+    text-decoration: none;
+    border-radius: 9px;
+    font-size: 14px;
+}
+
+.nav a:hover,
+.nav a.active {
+    background: #29234b;
+    color: #c4b5fd;
+}
+
+.main {
+    margin-left: 245px;
+    padding: 35px;
+    max-width: 1200px;
+}
+
+.header {
+    margin-bottom: 28px;
+}
+
+.header h1 {
+    font-size: 27px;
+    margin-bottom: 9px;
+}
+
+.header p {
+    color: #8993ad;
+    font-size: 14px;
+}
+
+.form-card {
+    background: #121a30;
+    border: 1px solid #26304c;
+    border-radius: 15px;
+    padding: 30px;
+}
+
+.form-heading {
+    font-size: 18px;
+    margin-bottom: 25px;
+    color: #c4b5fd;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.field.full {
+    grid-column: 1 / -1;
+}
+
+label {
+    color: #d5d9e8;
+    font-size: 13px;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 13px 14px;
+    border: 1px solid #303b5b;
+    background: #0b1224;
+    color: white;
+    border-radius: 8px;
+    outline: none;
+    font-size: 14px;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #8b5cf6;
+}
+
+textarea {
+    min-height: 125px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+input::placeholder, textarea::placeholder {
+    color: #68738f;
+}
+
+select option {
+    background: #121a30;
+}
+
+.hint {
+    color: #7f8ba8;
+    font-size: 11px;
+}
+
+.submit-btn {
+    margin-top: 28px;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 8px;
+    background: #8b5cf6;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.submit-btn:hover {
+    background: #7c3aed;
+}
+
+.submit-btn:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+}
+
+.message {
+    margin-top: 18px;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.link-result {
+    display: none;
+    margin-top: 25px;
+    padding: 20px;
+    border: 1px solid #4b3d75;
+    border-radius: 10px;
+    background: #19182f;
+}
+
+.link-result h3 {
+    color: #c4b5fd;
+    margin-bottom: 12px;
+}
+
+.link-box {
+    display: flex;
+    gap: 10px;
+}
+
+.link-box input {
+    flex: 1;
+}
+
+.copy-btn {
+    padding: 12px 17px;
+    background: #37305d;
+    color: white;
+    border: 1px solid #63548d;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+@media(max-width: 750px) {
+    .sidebar {
+        width: 190px;
+    }
+
+    .main {
+        margin-left: 190px;
+        padding: 20px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width: 480px) {
+    .sidebar {
+        width: 65px;
+        padding: 15px 7px;
+    }
+
+    .logo {
+        font-size: 10px;
+        overflow-wrap: anywhere;
+    }
+
+    .menu-title {
+        display: none;
+    }
+
+    .nav a {
+        font-size: 0;
+        text-align: center;
+        padding: 14px 3px;
+    }
+
+    .main {
+        margin-left: 65px;
+        padding: 15px;
+    }
+
+    .form-card {
+        padding: 18px;
+    }
+
+    .link-box {
+        flex-direction: column;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<aside class="sidebar">
+    <div class="logo">TalentScreen AI</div>
+
+    <div class="menu-title">MAIN MENU</div>
+
+    <nav class="nav">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="create-job.html" class="active">Create Job</a>
+        <a href="applicants.html">Applicants</a>
+    </nav>
+
+    <div class="menu-title">ACCOUNT</div>
+
+    <nav class="nav">
+        <a href="index.html">Login Page</a>
+    </nav>
+</aside>
+
+<main class="main">
+
+    <header class="header">
+        <h1>Create New Job</h1>
+        <p>Publish a vacancy and invite candidates to apply.</p>
+    </header>
+
+    <section class="form-card">
+
+        <h2 class="form-heading">Job Information</h2>
+
+        <form id="jobForm">
+
+            <div class="form-grid">
+
+                <div class="field">
+                    <label for="jobTitle">Job Title *</label>
+                    <input id="jobTitle" required
+                    placeholder="Example: Python Developer">
+                </div>
+
+                <div class="field">
+                    <label for="company">Company Name *</label>
+                    <input id="company" required
+                    placeholder="Enter company name">
+                </div>
+
+                <div class="field">
+                    <label for="location">Job Location *</label>
+                    <input id="location" required
+                    placeholder="Example: Bengaluru">
+                </div>
+
+                <div class="field">
+                    <label for="jobType">Employment Type *</label>
+                    <select id="jobType" required>
+                        <option value="">Select employment type</option>
+                        <option>Full Time</option>
+                        <option>Part Time</option>
+                        <option>Internship</option>
+                        <option>Contract</option>
+                        <option>Remote</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="qualification">Required Qualification *</label>
+                    <input id="qualification" required
+                    placeholder="Example: BCA, BSc, MCA">
+                </div>
+
+                <div class="field">
+                    <label for="experience">Minimum Experience *</label>
+                    <select id="experience" required>
+                        <option value="">Select experience</option>
+                        <option>Fresher</option>
+                        <option>1 Year</option>
+                        <option>2 Years</option>
+                        <option>3 Years</option>
+                        <option>4+ Years</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="salary">Salary Range</label>
+                    <input id="salary"
+                    placeholder="Example: ₹3 LPA - ₹5 LPA">
+                </div>
+
+                <div class="field">
+                    <label for="deadline">Application Deadline *</label>
+                    <input type="date" id="deadline" required>
+                </div>
+
+                <div class="field full">
+                    <label for="skills">Required Skills *</label>
+                    <input id="skills" required
+                    placeholder="Python, HTML, CSS, JavaScript">
+                    <span class="hint">
+                        Separate each skill with a comma.
+                    </span>
+                </div>
+
+                <div class="field full">
+                    <label for="description">Job Description *</label>
+                    <textarea id="description" required
+                    placeholder="Describe the job role, responsibilities and requirements..."></textarea>
+                </div>
+
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">
+                Create Job & Generate Link
+            </button>
+
+            <p class="message" id="message"></p>
+
+        </form>
+
+        <div class="link-result" id="linkResult">
+            <h3>Registration Link</h3>
+
+            <div class="link-box">
+                <input type="text" id="registrationLink" readonly>
+                <button class="copy-btn" id="copyBtn" type="button">
+                    Copy Link
+                </button>
+            </div>
+
+            <p class="hint" style="margin-top:12px">
+                Share this link with candidates so they can submit their applications.
+            </p>
+        </div>
+
+    </section>
+
+</main>
+
+<script type="module">
+import { auth } from "./js/firebase-config.js";
+
+import {
+    onAuthStateChanged,
+    getIdTokenResult
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+
+const form = document.getElementById("jobForm");
+const submitBtn = document.getElementById("submitBtn");
+const message = document.getElementById("message");
+
+let currentUser = null;
+
+onAuthStateChanged(auth, async (user) => {
+    if (!user) {
+        window.location.replace("index.html");
+        return;
+    }
+
+    try {
+        const token = await getIdTokenResult(user, true);
+
+        if (token.claims.admin !== true) {
+            window.location.replace("index.html");
+            return;
+        }
+
+        currentUser = user;
+    } catch (error) {
+        console.error(error);
+        window.location.replace("index.html");
+    }
+});
+
+const today = new Date();
+const localToday = new Date(
+    today.getTime() - today.getTimezoneOffset() * 60000
+).toISOString().split("T")[0];
+
+document.getElementById("deadline").min = localToday;
+
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    if (!currentUser) {
+        message.textContent = "Please wait for admin verification.";
+        return;
+    }
+
+    message.style.color = "#fbbf24";
+    message.textContent =
+        "Job creation is not connected to Firestore yet. Please wait for the Firebase integration step.";
+});
+
+document.getElementById("copyBtn").addEventListener("click", async () => {
+    const link = document.getElementById("registrationLink").value;
+
+    try {
+        await navigator.clipboard.writeText(link);
+        document.getElementById("copyBtn").textContent = "Copied!";
+    } catch (error) {
+        document.getElementById("registrationLink").select();
+        document.execCommand("copy");
+        document.getElementById("copyBtn").textContent = "Copied!";
+    }
+});
+</script>
+
+</body>
+</html>

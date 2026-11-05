@@ -1,0 +1,396 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TalentScreen AI | Dashboard</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #090d1a;
+    color: #fff;
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 245px;
+    background: #10162a;
+    border-right: 1px solid #222b45;
+    padding: 28px 18px;
+    position: fixed;
+    height: 100vh;
+}
+
+.logo {
+    font-size: 21px;
+    font-weight: bold;
+    color: #a78bfa;
+    margin-bottom: 45px;
+}
+
+.menu-title {
+    color: #77809c;
+    font-size: 11px;
+    margin: 25px 12px 12px;
+    letter-spacing: 1px;
+}
+
+.nav a {
+    display: block;
+    padding: 14px 13px;
+    margin-bottom: 7px;
+    color: #aeb7d0;
+    text-decoration: none;
+    border-radius: 9px;
+    font-size: 14px;
+    transition: .2s;
+}
+
+.nav a:hover,
+.nav a.active {
+    background: #29234b;
+    color: #c4b5fd;
+}
+
+.main {
+    margin-left: 245px;
+    width: calc(100% - 245px);
+    padding: 35px;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+    gap: 15px;
+}
+
+.topbar h1 {
+    font-size: 27px;
+}
+
+.topbar p {
+    color: #8993ad;
+    margin-top: 8px;
+    font-size: 13px;
+}
+
+.admin {
+    background: #171e35;
+    padding: 12px 17px;
+    border-radius: 10px;
+    color: #c4b5fd;
+    font-size: 13px;
+}
+
+.welcome {
+    background: linear-gradient(120deg, #292052, #172c52);
+    padding: 30px;
+    border-radius: 17px;
+    margin-bottom: 28px;
+    border: 1px solid #454071;
+}
+
+.welcome h2 {
+    font-size: 23px;
+    margin-bottom: 10px;
+}
+
+.welcome p {
+    color: #c3c9df;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 20px;
+    background: #8b5cf6;
+    color: white;
+    padding: 12px 19px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background: #7c3aed;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: #121a30;
+    border: 1px solid #26304c;
+    padding: 23px;
+    border-radius: 13px;
+}
+
+.stat-card p {
+    color: #8993ad;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.stat-card h2 {
+    font-size: 29px;
+    color: #c4b5fd;
+}
+
+.section {
+    background: #121a30;
+    border: 1px solid #26304c;
+    border-radius: 13px;
+    padding: 23px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.section-header h3 {
+    font-size: 17px;
+}
+
+.section-header a {
+    color: #a78bfa;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.empty {
+    text-align: center;
+    padding: 45px 15px;
+    color: #8993ad;
+}
+
+.empty h3 {
+    color: #d7dcef;
+    margin-bottom: 10px;
+    font-size: 17px;
+}
+
+.empty p {
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.logout {
+    margin-top: 30px;
+    width: 100%;
+    background: #2a1930;
+    color: #fca5a5;
+    border: 1px solid #49304b;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+@media(max-width: 1000px) {
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 700px) {
+    .sidebar {
+        width: 190px;
+    }
+
+    .main {
+        margin-left: 190px;
+        width: calc(100% - 190px);
+        padding: 20px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+@media(max-width: 480px) {
+    .sidebar {
+        width: 65px;
+        padding: 15px 7px;
+    }
+
+    .logo {
+        font-size: 10px;
+        overflow-wrap: anywhere;
+    }
+
+    .menu-title {
+        display: none;
+    }
+
+    .nav a {
+        font-size: 0;
+        text-align: center;
+        padding: 14px 3px;
+    }
+
+    .nav a::first-letter {
+        font-size: 16px;
+    }
+
+    .main {
+        margin-left: 65px;
+        width: calc(100% - 65px);
+        padding: 15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<aside class="sidebar">
+
+    <div class="logo">TalentScreen AI</div>
+
+    <div class="menu-title">MAIN MENU</div>
+
+    <nav class="nav">
+        <a href="dashboard.html" class="active">Dashboard</a>
+        <a href="create-job.html">Create Job</a>
+        <a href="applicants.html">Applicants</a>
+    </nav>
+
+    <div class="menu-title">ACCOUNT</div>
+
+    <nav class="nav">
+        <a href="index.html">Login Page</a>
+    </nav>
+
+    <button class="logout" id="logoutBtn">Logout</button>
+
+</aside>
+
+<main class="main">
+
+    <header class="topbar">
+        <div>
+            <h1>Dashboard</h1>
+            <p>AI-powered recruitment management system</p>
+        </div>
+
+        <div class="admin">Administrator</div>
+    </header>
+
+    <section class="welcome">
+        <h2>Welcome to TalentScreen AI</h2>
+        <p>
+            Manage job vacancies, receive candidate applications
+            and screen resumes using Artificial Intelligence.
+        </p>
+
+        <a href="create-job.html" class="btn">+ Create New Job</a>
+    </section>
+
+    <section class="stats">
+
+        <div class="stat-card">
+            <p>Total Jobs</p>
+            <h2 id="totalJobs">0</h2>
+        </div>
+
+        <div class="stat-card">
+            <p>Total Applicants</p>
+            <h2 id="totalApplicants">0</h2>
+        </div>
+
+        <div class="stat-card">
+            <p>Shortlisted</p>
+            <h2 id="shortlisted">0</h2>
+        </div>
+
+        <div class="stat-card">
+            <p>Pending Review</p>
+            <h2 id="pendingReview">0</h2>
+        </div>
+
+    </section>
+
+    <section class="section">
+
+        <div class="section-header">
+            <h3>Recent Applications</h3>
+            <a href="applicants.html">View All</a>
+        </div>
+
+        <div class="empty">
+            <h3>No Applications Yet</h3>
+            <p>
+                Once candidates submit their resumes,
+                their applications will appear here.
+            </p>
+        </div>
+
+    </section>
+
+</main>
+
+<script type="module">
+import { auth } from "./js/firebase-config.js";
+import {
+    onAuthStateChanged,
+    signOut,
+    getIdTokenResult
+} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+
+const logoutBtn = document.getElementById("logoutBtn");
+
+onAuthStateChanged(auth, async (user) => {
+    if (!user) {
+        window.location.replace("index.html");
+        return;
+    }
+
+    try {
+        const token = await getIdTokenResult(user, true);
+
+        if (token.claims.admin !== true) {
+            await signOut(auth);
+            window.location.replace("index.html");
+            return;
+        }
+    } catch (error) {
+        console.error("Admin verification failed:", error);
+        await signOut(auth);
+        window.location.replace("index.html");
+    }
+});
+
+logoutBtn.addEventListener("click", async () => {
+    await signOut(auth);
+    window.location.replace("index.html");
+});
+</script>
+
+</body>
+</html>
